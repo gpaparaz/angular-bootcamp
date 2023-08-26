@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { UsersService } from '../users.service';
+import { UsersService } from '../services/users.service';
+import { User } from '../interfaces/user';
 
 @Component({
   selector: 'tr[app-user]',
@@ -8,7 +9,7 @@ import { UsersService } from '../users.service';
 })
 export class UserComponent implements OnInit {
   //potrei anche fare a meno di specificare qualcosa nelle parentesi tonde e al parent indicare solo 'user' invece di 'user-data'
-  @Input('user-data') user: any;
+  @Input('user-data') user: User | undefined;
 
   @Output('onDeleteUser') userDeleted = new EventEmitter(); //NB: la libreria è di angular/core
   //perchè questo evento fuoriesca da questo componente deve essere di tipo Output, e quindi può essere ascltato dal padre
@@ -20,7 +21,7 @@ export class UserComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  deleteUser(user:any) {
+  deleteUser() {
     this.userDeleted.emit(this.user);
   }
 

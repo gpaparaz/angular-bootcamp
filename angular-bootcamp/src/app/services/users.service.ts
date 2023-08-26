@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
+import { User } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root' //NB: providedIn:root permette di rendere questo servizio globalmente accessibile in tutta l'app
 })
 export class UsersService {
-  users = [
+  users:User[] = [
     {
       name: 'Pippo',
       lastname: 'Pluto',
@@ -47,7 +48,7 @@ export class UsersService {
     return this.users;
   }
 
-  deleteUser(user:any){
+  deleteUser(user:User){
     const index = this.users.indexOf(user);
     if(index > -1){
       this.users.splice(index, 1);
