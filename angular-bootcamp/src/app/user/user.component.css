@@ -14,3 +14,12 @@ td {
   background-color: silver;
   color: red;
 }
+
+button.delete{
+  background-color: white;
+  color: red;
+  padding: 5px;
+  border: 1px solid gray;
+  margin: 5px;
+  width: 80px;
+}

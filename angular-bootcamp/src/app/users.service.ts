@@ -7,8 +7,8 @@ export class UsersService {
    getUsers(){
     return  [
       {
-        name: 'Hidran1',
-        lastname: 'Arias',
+        name: 'Pippo',
+        lastname: 'Pluto',
         email: 'hidran@gmail.com',
         fiscalcode: 'RSAHRN72M22Z444S',
         province: 'Torino',
@@ -16,8 +16,8 @@ export class UsersService {
         age: 43
       },
       {
-        name: 'Hidran2',
-        lastname: 'Arias',
+        name: 'Topolino',
+        lastname: 'Minnie',
         email: 'hidran@gmail.com',
         fiscalcode: 'RSAHRN72M22Z444S',
         province: 'Torino',
@@ -25,8 +25,8 @@ export class UsersService {
         age: 43
       },
       {
-        name: 'Hidran3',
-        lastname: 'Arias',
+        name: 'Tizio',
+        lastname: 'Caio',
         email: 'hidran@gmail.com',
         fiscalcode: 'RSAHRN72M22Z444S',
         province: 'Torino',
