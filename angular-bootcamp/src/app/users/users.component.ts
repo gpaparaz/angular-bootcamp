@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../users.service';
 
 @Component({
@@ -10,13 +10,18 @@ import { UsersService } from '../users.service';
   ]
 })
 
-export class UsersComponent {
+export class UsersComponent implements OnInit{
   title = 'Users';
   public users:any = [];
 
   //inietto il servizio nel componente
   constructor(private service: UsersService){
-    this.users = service.getUsers();
+    //in questo caso il costruttore si occupa solo di inizializzare il servizio
+  }
+
+  ngOnInit(): void {
+    this.users = this.service.getUsers();
+
   }
 
 }
