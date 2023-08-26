@@ -10,7 +10,9 @@
     <th>Age</th>
     <th>Actions</th>
   </tr>
-  <tr app-user *ngFor="let user of users" [user-data]="user"></tr>
+  <tr app-user *ngFor="let user of users"
+  (onDeleteUser)="onDeleteUser($event)"
+  [user-data]="user"></tr>
 
 
 </table>
