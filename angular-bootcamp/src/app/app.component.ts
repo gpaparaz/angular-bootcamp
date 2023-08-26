@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { User } from './interfaces/user';
+import { UserInterface } from './interfaces/user';
+import { User } from './classes/user';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +12,7 @@ export class AppComponent {
 
   showForm = false;
   userSelected: User = {
+    id:0,
     name: '',
     lastname: '',
     email: '',

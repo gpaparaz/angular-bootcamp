@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { User } from '../interfaces/user';
+import { UserInterface } from '../interfaces/user';
+import { User } from '../classes/user';
 
 @Component({
   selector: 'app-user-detail',
@@ -11,6 +12,7 @@ export class UserDetailComponent {
 
 constructor(){
   this.user = {
+    id:0,
     name: '',
     lastname: '',
     email: '',

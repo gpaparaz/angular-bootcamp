@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { User } from '../interfaces/user';
+import { UserInterface } from '../interfaces/user';
+import { User } from '../classes/user';
 
 @Injectable({
   providedIn: 'root' //NB: providedIn:root permette di rendere questo servizio globalmente accessibile in tutta l'app
@@ -7,6 +8,7 @@ import { User } from '../interfaces/user';
 export class UsersService {
   users:User[] = [
     {
+      id:1,
       name: 'Pippo',
       lastname: 'Pluto',
       email: 'hidran@gmail.com',
@@ -16,6 +18,7 @@ export class UsersService {
       age: 23
     },
     {
+      id:2,
       name: 'Topolino',
       lastname: 'Minnie',
       email: 'hidran@gmail.com',
@@ -25,6 +28,7 @@ export class UsersService {
       age: 20
     },
     {
+      id:3,
       name: 'Tizio',
       lastname: 'Caio',
       email: 'hidran@gmail.com',
@@ -34,6 +38,7 @@ export class UsersService {
       age: 34
     },
     {
+      id:4,
       name: 'Hidran4',
       lastname: 'Arias',
       email: 'hidran@gmail.com',
