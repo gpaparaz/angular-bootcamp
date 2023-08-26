@@ -29,12 +29,14 @@ export class UsersComponent implements OnInit{
 
   }
 
-  onDeleteUser(user:User){
+  onDeleteUser(user: User) {
     this.service.deleteUser(user);
   }
+  onSelectUser(user: User) {
+    //creo una copia dell'oggetto che sto leggendo e lo passo tramite evento
+    const userCopy = Object.assign({}, user);
+    this.updateUser.emit(userCopy);
 
-  onSelectUser(user:User){
-    this.updateUser.emit(user);
   }
 
 }
