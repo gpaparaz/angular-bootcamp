@@ -15,6 +15,7 @@ export class UserComponent implements OnInit {
   //perchè questo evento fuoriesca da questo componente deve essere di tipo Output, e quindi può essere ascltato dal padre
   //userDeleted è la variabile qui interna, mentre onDeleteUser serve al padre per ascoltare
 
+  @Output() onSelectUser = new EventEmitter();
 
   constructor(private userService: UsersService) { }
 
@@ -23,6 +24,10 @@ export class UserComponent implements OnInit {
 
   deleteUser() {
     this.userDeleted.emit(this.user);
+  }
+
+  updateUser(){
+    this.onSelectUser.emit(this.user);
   }
 
 }
