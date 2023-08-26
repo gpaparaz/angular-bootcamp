@@ -9,9 +9,19 @@ import { User } from './interfaces/user';
 export class AppComponent {
   title = 'angular-bootcamp';
 
-  userSelected = false;
+  showForm = false;
+  userSelected: User = {
+    name: '',
+    lastname: '',
+    email: '',
+    fiscalcode: '',
+    province: '',
+    phone: '',
+    age: 0,
+  }
 
   updateUser(user:User){
-    this.userSelected = true;
+    this.showForm = true;
+    this.userSelected = user;
   }
 }
