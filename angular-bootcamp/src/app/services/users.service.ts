@@ -68,5 +68,11 @@ export class UsersService {
     }
   }
 
+  createUser(user: User) {
+
+    this.users.splice(0, 0, { ...user });
+
+  }
+
   constructor() { }
 }
