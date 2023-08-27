@@ -7,13 +7,15 @@ import { UsersComponent } from './users/users.component';
 import { UserComponent } from './user/user.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { FormsModule } from '@angular/forms';
+import { UcfirstPipe } from './ucfirst.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     UsersComponent,
     UserComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    UcfirstPipe
   ],
   imports: [
     BrowserModule,
