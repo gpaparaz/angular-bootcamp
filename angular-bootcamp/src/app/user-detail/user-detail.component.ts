@@ -11,19 +11,22 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./user-detail.component.css']
 })
 export class UserDetailComponent {
-@Input() user:User;
+  private usercopy: User;
+  private __user: User;
 
-  constructor(private userService: UsersService){
-    this.user = {
-      id:0,
-      name: '',
-      lastname: '',
-      email: '',
-      fiscalcode: '',
-      province: '',
-      phone: '',
-      age: 0,
-    }
+  @Input() set user(user: User) {
+    this.__user = user;
+    this.usercopy = Object.assign({}, user);
+  }
+
+  get user() {
+    return this.__user;
+  }
+
+  constructor(private userService: UsersService) {
+    this.user = new User();
+    this.__user = new User();
+    this.usercopy = new User();
   }
 
   saveUser() {
@@ -37,13 +40,12 @@ export class UserDetailComponent {
     // Let's unbind this.user from previously created/modified user
     this.user = new User();
   }
-
   resetForm(form: FormGroup) {
 
     if (this.user.id === 0) {
       this.user = new User();
     } else {
-      form.reset();
+      this.user = this.usercopy;
     }
 
   }
