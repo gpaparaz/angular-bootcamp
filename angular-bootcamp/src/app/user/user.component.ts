@@ -12,8 +12,12 @@ import { Router } from '@angular/router';
 })
 export class UserComponent implements OnInit {
 
+  //potrei anche fare a meno di specificare qualcosa nelle parentesi tonde e al parent indicare solo 'user' invece di 'user-data'
   @Input('user-data') user: User | undefined;
-  @Output('onDeleteUser') userDeleted = new EventEmitter();
+  @Output('onDeleteUser') userDeleted = new EventEmitter(); //NB: la libreria è di angular/core
+  //perchè questo evento fuoriesca da questo componente deve essere di tipo Output, e quindi può essere ascltato dal padre
+  //userDeleted è la variabile qui interna, mentre onDeleteUser serve al padre per ascoltare
+
   @Output('onSelectUser') onSelectUser = new EventEmitter();
 
   faPen = faPencilAlt;
