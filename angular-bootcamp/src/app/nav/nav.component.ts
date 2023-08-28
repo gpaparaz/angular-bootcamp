@@ -1,4 +1,5 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {User} from "../classes/User";
 
 @Component({
   selector: 'app-nav',
@@ -6,8 +7,7 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
-
-  @Output() onNewUser = new EventEmitter<null>();
+ @Output() onNewUser = new EventEmitter<null>();
   constructor() { }
 
   ngOnInit(): void {
@@ -16,5 +16,4 @@ export class NavComponent implements OnInit {
     evt.preventDefault();
     this.onNewUser.emit();
   }
-
 }

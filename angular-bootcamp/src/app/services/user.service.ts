@@ -48,10 +48,13 @@ export class UserService {
       age: 45
     }
   ];
-
-  getUsers() {
+  getUsers(): User[] {
 
     return this.users;
+  }
+  getUser(id: number): User | undefined {
+
+    return this.users.find(user => user.id === id);
   }
   deleteUser(user: User) {
 
@@ -72,6 +75,4 @@ export class UserService {
     this.users.splice(0, 0, { ...user });
 
   }
-
-  constructor() { }
 }
