@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { UserInterface } from '../interfaces/user';
-import { User } from '../classes/user';
+import { User } from '../classes/User';
 
 @Injectable({
   providedIn: 'root' //NB: providedIn:root permette di rendere questo servizio globalmente accessibile in tutta l'app
 })
-export class UsersService {
+export class UserService {
   users:User[] = [
     {
       id:1,
@@ -49,26 +49,25 @@ export class UsersService {
     }
   ];
 
-   getUsers(){
+  getUsers() {
+
     return this.users;
   }
+  deleteUser(user: User) {
 
-  deleteUser(user:User){
     const index = this.users.indexOf(user);
-    if(index > -1){
+    if (index > -1) {
       this.users.splice(index, 1);
     }
   }
-
-  updateUser(user: User) {
+  updateUser(user: UserInterface) {
     const idx = this.users.findIndex(v => v.id === user.id);
 
     if (idx !== -1) {
       this.users[idx] = { ...user };
     }
   }
-
-  createUser(user: User) {
+  createUser(user: UserInterface) {
 
     this.users.splice(0, 0, { ...user });
 

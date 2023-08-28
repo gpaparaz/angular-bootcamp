@@ -1,7 +1,8 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { UsersService } from '../services/users.service';
-import { UserInterface } from '../interfaces/user';
-import { User } from '../classes/user';
+
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { User } from '../classes/User';
+import { UserService } from '../services/users.service';
+
 
 @Component({
   selector: 'app-users',
@@ -12,31 +13,26 @@ import { User } from '../classes/user';
   ]
 })
 
-export class UsersComponent implements OnInit{
-  title = 'Users';
-  public users:User[] = [];
+export class UsersComponent implements OnInit {
+  title = 'Users'
+  public users: User[] = [];
+  @Output('updateUser') updateUser = new EventEmitter<User>();
 
-    //l'evento updateUser avrà come parametro un oggetto di tipo User
-  @Output() updateUser = new EventEmitter<User>();
 
-  //inietto il servizio nel componente
-  constructor(private service: UsersService){
-    //in questo caso il costruttore si occupa solo di inizializzare il servizio
+  constructor(private service: UserService) {
+
+
   }
-
   ngOnInit(): void {
+
     this.users = this.service.getUsers();
-
   }
-
   onDeleteUser(user: User) {
     this.service.deleteUser(user);
   }
   onSelectUser(user: User) {
-    //creo una copia dell'oggetto che sto leggendo e lo passo tramite evento
     const userCopy = Object.assign({}, user);
     this.updateUser.emit(userCopy);
 
   }
-
 }

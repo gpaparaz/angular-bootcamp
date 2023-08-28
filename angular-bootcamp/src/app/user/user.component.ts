@@ -1,34 +1,36 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { UsersService } from '../services/users.service';
-import { UserInterface } from '../interfaces/user';
-import { User } from '../classes/user';
+import { User } from '../classes/User';
 
+import { faPencilAlt, faTrash} from '@fortawesome/free-solid-svg-icons';
+import { UserService } from '../services/users.service';
 @Component({
   selector: 'tr[app-user]',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css']
+  templateUrl: './user.component.html'
+
+  //inputs: ['user:user-data']
 })
 export class UserComponent implements OnInit {
-  //potrei anche fare a meno di specificare qualcosa nelle parentesi tonde e al parent indicare solo 'user' invece di 'user-data'
+
   @Input('user-data') user: User | undefined;
+  @Output('onDeleteUser') userDeleted = new EventEmitter();
+  @Output('onSelectUser') onSelectUser = new EventEmitter();
+  faPen = faPencilAlt;
+  faTrash = faTrash;
+  constructor(private userService: UserService) {
 
-  @Output('onDeleteUser') userDeleted = new EventEmitter(); //NB: la libreria è di angular/core
-  //perchè questo evento fuoriesca da questo componente deve essere di tipo Output, e quindi può essere ascltato dal padre
-  //userDeleted è la variabile qui interna, mentre onDeleteUser serve al padre per ascoltare
-
-  @Output() onSelectUser = new EventEmitter();
-
-  constructor(private userService: UsersService) { }
-
-  ngOnInit(): void {
   }
 
+  ngOnInit() {
+  }
   deleteUser() {
+
     this.userDeleted.emit(this.user);
-  }
 
-  updateUser(){
+
+  }
+  updateUser() {
+    console.log(this.user);
     this.onSelectUser.emit(this.user);
-  }
 
+  }
 }

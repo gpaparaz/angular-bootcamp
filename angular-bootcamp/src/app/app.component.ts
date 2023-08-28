@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { UserInterface } from './interfaces/user';
-import { User } from './classes/user';
+import { User } from './classes/User';
 
 @Component({
   selector: 'app-root',
@@ -8,25 +7,13 @@ import { User } from './classes/user';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'angular-bootcamp';
-
   showForm = false;
-  userSelected: User = {
-    id:0,
-    name: '',
-    lastname: '',
-    email: '',
-    fiscalcode: '',
-    province: '',
-    phone: '',
-    age: 0,
-  }
+  userSelected: User = new User();
 
-  updateUser(user:User){
+  updateUser(user: User) {
     this.showForm = true;
     this.userSelected = user;
   }
-
   newUser() {
     this.userSelected = new User();
     this.showForm = true;
