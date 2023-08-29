@@ -8,6 +8,8 @@
 <td>
   <div class="row">
     <div class="col-sm">
+      <!-- invece di usare un bottone posso usare routerLink, con la rotta di destinazione e l'argomento da passare
+      in particolare in questo caso in cui passo l'argomento devo mettere routerLink tra quadre [] -->
       <a class="btn btn-sm btn-primary w-50" [routerLink] ="['/users',user?.id ]">
         <fa-icon [icon]="faInfo"></fa-icon>
       </a>

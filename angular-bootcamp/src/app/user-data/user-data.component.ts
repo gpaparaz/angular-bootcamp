@@ -12,6 +12,7 @@ export class UserDataComponent implements OnInit {
 
   public user: UserInterface | undefined;
 
+  //activated route rappresenta la rotta che è stata attivata, e quindi consente di accedere a params, paramMap ecc
   constructor(private userService: UserService, private route: ActivatedRoute) {
 
   }
