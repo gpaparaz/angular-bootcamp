@@ -12,13 +12,15 @@
     <th>Action</th>
   </tr>
   </thead>
-  <tbody>
-  <tr app-user
-  *ngFor="let user of users" [user-data]="user"
-      (onSelectUser) ="onSelectUser($event)"
-  (onDeleteUser) = "onDeleteUser($event)">
+  <!-- con ngIf condizioniamo la view dei dati così che funzioni solo dopo che ha fatto la subscribe.
+  tramite async consumiamo lo stream di dati, viene fatta automatica la subscribe e ci consegna i dati. mettiamo
+un alias per la risposta a questa chiamata. Quando hai fatto la subscribe passa i dati alla variabile users
+quindi users verrà letto come array e non più come stream di dati  -->
+  <tbody *ngIf=" (users$ | async) as users">
+    <tr app-user *ngFor="let user of users" id="{{user.id}}" [user-data]="user" (onSelectUser)="onSelectUser($event)"
+      (onDeleteUser)="onDeleteUser($event)">
 
-  </tr>
+    </tr>
   </tbody>
 
 </table>

@@ -33,8 +33,8 @@ export class UserDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe(param => {
-      const id = Number(param.id); // '12'
+    this.route.paramMap.subscribe(param => {
+      const id = Number(param.get('id')); // '12'
       if (id) {
         this.userService.getUser(id)
           .subscribe(user => this.user = user);
@@ -43,14 +43,19 @@ export class UserDetailComponent implements OnInit {
     });
   }
   saveUser() {
+    let obs; //metto una variabile che mi aiuta a gestire eventuali errori
 
     if (this.user.id > 0) {
-      this.userService.updateUser(this.user);
+      obs =  this.userService.updateUser(this.user);
     }
     else {
-      this.userService.createUser(this.user);
+      obs = this.userService.createUser(this.user);
     }
-    this.router.navigate(['users']);
+    //gestisco la risposta:
+    obs.subscribe(resp => {
+      console.log('response', resp);
+      this.router.navigate(['users']);
+    });
   }
   resetForm(form: FormGroup) {
 

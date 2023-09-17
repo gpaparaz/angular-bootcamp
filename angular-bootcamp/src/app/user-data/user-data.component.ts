@@ -18,12 +18,12 @@ export class UserDataComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe(param => {
-      const id = Number(param.id); // '12'
-      if (id) {
+    //paramMap è un observable, contiene una mappa con i parametri required e optional passati con la rotta,
+    //permette di leggere diversi parametri alla volta
+    this.route.paramMap.subscribe(param => {
+      const id = Number(param.get('id') ); // '12'
         this.userService.getUser(id)
           .subscribe(user => this.user = user);
-      }
 
     });
   }
