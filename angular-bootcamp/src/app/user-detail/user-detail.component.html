@@ -1,40 +1,66 @@
 <!-- tramite #f dichiariamo una variabile con cui accederemo all'intero form  -->
 <form #f="ngForm">
   <input type="hidden" name="id" [(ngModel)]="user.id">
-  <div class="form-group">
-    <label for="firstname">First name</label>
-    <input class="form-control" [(ngModel)]="user.name" name="firstname" id="firstname">
+  <div class="row mt-4">
+    <div class="form-group col-sm-6">
+      <label for="firstname">First name</label>
+      <input  #firstname = "ngModel" required minlength="3" class="form-control" [(ngModel)]="user.name" name="firstname" id="firstname">
+    <!-- se l'input qui sopra non è valido, compare il div qui sotto.
+    nell'input di sopra ci sono due validatori, il requird e minLenght. dobbiamo gestire in maniera diversa i due errori.
+  tramite errors si accede all'elenco di errori.
+con firstname.dirty verifichiamo se l'utente abbia effettivamente modificato il campo, altrimenti
+il messaggio verrebbe fuori a prescindere finchè l'input non è valido   -->
+      <div *ngIf="firstname.dirty && firstname.touched && firstname.errors">{{firstname.errors | json}}
+      <div class="alert alert-danger" *ngIf="firstname.errors.required">
+      This field first name is required
+    </div>
+      <div class="alert alert-danger" *ngIf="firstname.errors.minlength">
+        This min length of field first name is {{firstname.errors.minlength.requiredLength}} chars
+      </div>
+    </div>
+    </div>
+    <div class="form-group  col-sm-6">
+      <label for="lastname">Last name</label>
+      <input class="form-control" [(ngModel)]="user.lastname" name="lastname" id="lastname">
+    </div>
   </div>
-  <div class="form-group">
-    <label for="lastname">Last name</label>
-    <input class="form-control" [(ngModel)]="user.lastname" name="lastname" id="lastname">
+  <div class="row mt-4">
+    <div class="form-group   col-sm-6">
+      <label for="fiscalcode">Fiscal code</label>
+      <input class="form-control" [(ngModel)]="user.fiscalcode" name="fiscalcode" id="fiscalcode">
+    </div>
+    <div class="form-group   col-sm-6">
+      <label for="phone">Phone</label>
+      <input class="form-control" [(ngModel)]="user.phone" name="phone" id="phone">
+    </div>
   </div>
-  <div class="form-group">
-    <label for="fiscalcode">Fiscal code</label>
-    <input class="form-control" [(ngModel)]="user.fiscalcode" name="fiscalcode" id="fiscalcode">
+  <div class="row mt-4">
+    <div class="form-group col-sm-6">
+      <label for="email">Email</label>
+      <input class="form-control" [(ngModel)]="user.email" type="email" name="email" id="email">
+    </div>
+    <div class="form-group  col-sm-6">
+      <label for="age">Age</label>
+      <input class="form-control" [(ngModel)]="user.age" type="number" name="age" id="age">
+    </div>
   </div>
-  <div class="form-group">
-    <label for="phone">Phone</label>
-    <input class="form-control" [(ngModel)]="user.phone" name="phone" id="phone">
-  </div>
-  <div class="form-group">
-    <label for="email">Email</label>
-    <input class="form-control" [(ngModel)]="user.email" type="email" name="email" id="email">
-  </div>
-  <div class="form-group">
-    <label for="age">Age</label>
-    <input class="form-control" [(ngModel)]="user.age" type="number" name="age" id="age">
-  </div>
+  <div class="row flex justify-content-center mt-4">
+    <div class="form-group col-sm-6">
+      <label for="province">Province</label>
+      <input class="form-control" [(ngModel)]="user.province" type="text" name="province" id="province">
+    </div>
 
+  </div>
   <div class="form-group form-footer row mt-3">
     <div class="col-md-4">
-      <a class="btn btn-lg btn-primary w-50" [routerLink] ="['/users']">BACK TO USERS</a>
+      <a class="btn btn-lg btn-primary " [routerLink]="['/users']">BACK TO USERS</a>
     </div>
     <div class="col-md-4">
-    <a class="btn btn-lg btn-outline-secondary  w-50" (click)="resetForm(f.form)">RESET</a>
+      <a class="btn btn-lg btn-outline-secondary" (click)="resetForm(f.form)">RESET</a>
     </div>
-    <div class="col-md-4">
-    <a  class="btn btn-lg btn-success w-50 " (click)="saveUser()"> SAVE</a>
+    <div class="col-md-4">{{f.invalid | json}}
+      <button [disabled] = "f.invalid" class="btn btn-lg btn-success" (click)="saveUser()"> SAVE</button>
+    <!-- disabled è una propria nativa. f è un ngModule -->
     </div>
   </div>
 </form>
